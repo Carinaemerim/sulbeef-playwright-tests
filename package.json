@@ -1,0 +1,26 @@
+{
+  "name": "sulbeef-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "bdd:clean": "rm -rf .features-gen",
+    "bdd:gen": "npm run bdd:clean && bddgen",
+    "test": "npm run bdd:clean && npx bddgen && npx playwright test",
+    "test:headed": "npm run bdd:clean && npx bddgen && npx playwright test --headed",
+    "test:ui": "npm run bdd:clean && npx bddgen && npx playwright test --ui",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.5",
+    "dotenv": "^18.0.9",
+    "playwright-bdd": "^9.2.1",
+    "typescript": "^7.0.2"
+  }
+}
