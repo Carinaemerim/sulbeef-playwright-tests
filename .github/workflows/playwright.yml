@@ -1,0 +1,47 @@
+name: Playwright Tests with SonarCloud
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 #Sonar needs the full history to assign issues properly
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+      
+    - name: Run Playwright tests
+      env:
+        SULBEEF_USER: ${{ secrets.SULBEEF_USER }}
+        SULBEEF_PASS: ${{ secrets.SULBEEF_PASS }}
+      run: npm run test
+      
+    # Automatically upload the Playwright test report to SonarCloud
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarqube-scan-action@v5.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically created by GitHub
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # The token to authenticate with SonarCloud, set in the repository secrets
+      with:
+        args: >
+          -Dsonar.organization=carinaemerim
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30

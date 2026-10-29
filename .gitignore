@@ -1,0 +1,13 @@
+# Node
+node_modules/
+.env
+
+# Playwright Reports & Results
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Playwright-BDD (Cache temporário)
+.features-gen/

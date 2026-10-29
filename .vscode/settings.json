@@ -1,0 +1,19 @@
+{
+  "cucumber.features": [
+    "tests/features/*.feature"
+  ],
+  "cucumber.glue": [
+    "tests/steps/*.ts",
+    "support/fixtures/*.ts"
+  ],
+  "cucumber.codeLens.enabled": true,
+  "cucumberautocomplete.steps": [
+    "tests/steps/*.ts"
+  ],
+  "cucumberautocomplete.syncfeatures": "tests/features/*.feature",
+  "cucumberautocomplete.strictGherkinValidation": true,
+  "playwrightBdd.configPath": "playwright.config.ts",
+  "playwrightBdd.featureFolder": "tests/features",
+  "playwrightBdd.stepsFolder": "tests",
+  "playwright-bdd-lens.command": "npx playwright test"
+}
