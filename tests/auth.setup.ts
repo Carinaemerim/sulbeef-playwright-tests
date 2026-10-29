@@ -1,9 +1,9 @@
-import { test, expect } from '../support/fixtures/baseTest';
+import { test, expect } from '../support/fixtures/baseTest.js';
 
 const authFile = 'playwright/.auth/user.json';
 
 test('userLogin', async ({ loginPage, page }) => {
-    await loginPage.goto();
+    await loginPage.goto(), {waitUntil: 'networkidle'};
     const username = process.env.SULBEEF_USER || '';
     const password = process.env.SULBEEF_PASS || '';
 
