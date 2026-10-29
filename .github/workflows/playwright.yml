@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Tests with SonarCloud
 on:
   push:
     branches: [ main, master ]
@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    
+      with:
+        fetch-depth: 0 # Sonar needs the full history to assign issues properly
+
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
@@ -27,6 +29,16 @@ jobs:
         SULBEEF_PASS: ${{ secrets.SULBEEF_PASS }}
       run: npm run test
       
+    # Analysis with SonarCloud
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically created by GitHub
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # The token created in SonarCloud, more details below
+      with:
+        args: >
+          -Dsonar.organization=Carinaemerim
+
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
