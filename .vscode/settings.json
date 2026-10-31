@@ -1,19 +1,18 @@
 {
-  "cucumber.features": [
-    "tests/features/*.feature"
-  ],
-  "cucumber.glue": [
-    "tests/steps/*.ts",
-    "support/fixtures/*.ts"
-  ],
+  "cucumber.features": ["tests/features/*.feature"],
+  "cucumber.glue": ["tests/steps/*.ts", "support/fixtures/*.ts"],
   "cucumber.codeLens.enabled": true,
-  "cucumberautocomplete.steps": [
-    "tests/steps/*.ts"
-  ],
+  "cucumberautocomplete.steps": ["tests/steps/*.ts"],
   "cucumberautocomplete.syncfeatures": "tests/features/*.feature",
   "cucumberautocomplete.strictGherkinValidation": true,
   "playwrightBdd.configPath": "playwright.config.ts",
   "playwrightBdd.featureFolder": "tests/features",
   "playwrightBdd.stepsFolder": "tests",
-  "playwright-bdd-lens.command": "npx playwright test"
+  "playwright-bdd-lens.command": "npx playwright test",
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }
