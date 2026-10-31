@@ -63,6 +63,7 @@ export default defineConfig({
         storageState: 'playwright/.auth/user.json', 
       },
       dependencies: ['setup'],
+      grepInvert: /@desktop/,
     },
 
     //5. MOBILE ANDROID RUNNER (Execute the .feature scenarios in mobile Android)
@@ -74,6 +75,7 @@ export default defineConfig({
         storageState: 'playwright/.auth/user.json', 
       },
       dependencies: ['setup'],
+      grepInvert: /@desktop/,
   }
   ],
 });

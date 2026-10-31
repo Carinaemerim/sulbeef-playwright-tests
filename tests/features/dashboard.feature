@@ -1,6 +1,7 @@
 Feature: dashboard
 
-  Scenario: Verify dashboard page default elements
+  @desktop
+  Scenario: Verify dashboard page default elements on desktop
     Given I am on the dashboard page
     Then I should see the dashboard header
     And I should see Criar Novo Pedido button
@@ -14,6 +15,15 @@ Feature: dashboard
     And I should see the Pedidos card
     And I should see the Baixar Comissao card
     And I should see the Acessar Webmail card
+
+  @mobile
+    Scenario: Verify dashboard page default elements on mobile
+      Given I am on the dashboard page
+      Then I should see the dashboard header
+      And I should see Hamburger Menu icon with its itens hidden
+      And I should see the Pedidos card
+      And I should see the Baixar Comissao card
+      And I should see the Acessar Webmail card
 
     # Scenario: Verify funcionality of Hide lateral menu button
     #     Given I am on the dashboard page

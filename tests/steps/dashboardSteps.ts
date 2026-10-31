@@ -30,36 +30,40 @@ Then('I should see the lateral menu Notas Fiscais', async ({ dashboardPage }) =>
   await expect(dashboardPage.lateralMenuNotasFiscais).toBeVisible();
 });
 
-Then('I should see the lateral menu Plantas', async ({ dashboardPage}) => {
+Then('I should see the lateral menu Plantas', async ({ dashboardPage }) => {
   await expect(dashboardPage.lateralMenuPlantas).toBeVisible();
 });
 
-Then('I should see the lateral menu Produtos', async ({ dashboardPage}) => {
+Then('I should see the lateral menu Produtos', async ({ dashboardPage }) => {
   await expect(dashboardPage.lateralMenuProdutos).toBeVisible();
 });
 
-Then('I should see the lateral menu Clientes e Fornecedores', async ({ dashboardPage}) => {
+Then('I should see the lateral menu Clientes e Fornecedores', async ({ dashboardPage }) => {
   await expect(dashboardPage.lateralMenuClientesFornecedores).toBeVisible();
 });
 
-Then('I should see the lateral menu Relatorios', async ({ dashboardPage}) => {
+Then('I should see the lateral menu Relatorios', async ({ dashboardPage }) => {
   await expect(dashboardPage.lateralMenuRelatorios).toBeVisible();
 });
 
-Then('I should see the lateral menu Usuarios', async ({ dashboardPage}) => {
+Then('I should see the lateral menu Usuarios', async ({ dashboardPage }) => {
   await expect(dashboardPage.lateralMenuPedidos).toBeVisible();
 });
 
-Then('I should see the Pedidos card', async ({ dashboardPage}) => {
+Then('I should see the Pedidos card', async ({ dashboardPage }) => {
   await expect(dashboardPage.cardPedidos).toBeVisible();
 });
 
-Then('I should see the Baixar Comissao card', async ({ dashboardPage}) => {
+Then('I should see the Baixar Comissao card', async ({ dashboardPage }) => {
   await expect(dashboardPage.cardBaixarComissao).toBeVisible();
 });
 
 Then('I should see the Acessar Webmail card', async ({ dashboardPage}) => {
   await expect(dashboardPage.cardAcessarWebmail).toBeVisible();
+});
+
+Then('I should see Hamburger Menu icon with its itens hidden', async ({ dashboardPage }) => {
+  await expect(dashboardPage.lateralMenuContainer).toBeHidden();
 });
 
 

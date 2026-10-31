@@ -14,6 +14,7 @@ export class DashboardPage {
     readonly cardPedidos: Locator;
     readonly cardBaixarComissao: Locator;
     readonly cardAcessarWebmail: Locator;
+    readonly lateralMenuContainer: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -29,6 +30,7 @@ export class DashboardPage {
         this.cardPedidos = page.locator('div.MuiPaper-root').filter({ has: page.getByRole('heading', { name: 'Pedidos' }) });
         this.cardBaixarComissao = page.locator('div.MuiPaper-root').filter({ has: page.getByRole('heading', { name: 'Baixar Comissão' }) });
         this.cardAcessarWebmail = page.locator('div.MuiPaper-root').filter({ has: page.getByRole('heading', { name: 'Acessar Webmail' }) });
+        this.lateralMenuContainer = page.getByRole('dialog');
     } 
 
     async goto() {
