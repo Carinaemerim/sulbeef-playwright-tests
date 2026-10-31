@@ -69,9 +69,7 @@ Then('I should see the Acessar Webmail card', async ({ dashboardPage }) => {
   await expect(dashboardPage.cardAcessarWebmail).toBeVisible();
 });
 
-Then(
-  'I should see Hamburger Menu icon with its itens hidden',
-  async ({ dashboardPage }) => {
+Then('I should see Hamburger Menu icon with its itens hidden', async ({ dashboardPage }) => {
     await expect(dashboardPage.lateralMenuContainer).toBeHidden();
   },
 );

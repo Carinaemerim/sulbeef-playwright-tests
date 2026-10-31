@@ -10,9 +10,9 @@
   "playwrightBdd.stepsFolder": "tests",
   "playwright-bdd-lens.command": "npx playwright test",
 
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "always"
   }
 }
