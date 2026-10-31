@@ -1,23 +1,25 @@
 import { test as base } from 'playwright-bdd';
-import { LoginPage } from '../pages/LoginPage';
+import { LoginPage } from '../pages/LoginPage.js';
+import { DashboardPage } from '../pages/DashboardPage.js';
 
 type MyFixtures = {
   loginPage: LoginPage;
+  dashboardPage: DashboardPage;
 };
 
 export const test = base.extend<MyFixtures>({
-  // Clean the storage state for tests tagged with @login to ensure a fresh login page
+  // Intercepts the browser context creation to handle session isolation
   context: async ({ browser }, use, testInfo) => {
-    // Verify if the test has the @login tag
-    const isLoginTest = testInfo.tags?.includes('@login');
+    // 💡 SHARP FIX: Only clear storage if the specific running scenario is explicitly tagged with @login
+    const hasLoginTag = testInfo.tags?.includes('@login');
 
-    if (isLoginTest) {
-      // Create a clean context, ignoring the global storageState for the login page
+    if (hasLoginTag) {
+      // Create a completely isolated, clean browser session for negative/empty login test scenarios
       const context = await browser.newContext({ storageState: { cookies: [], origins: [] } });
       await use(context);
       await context.close();
     } else {
-      // Original behavior unchanged for all other logged-in pages in the system
+      // 🚀 GLOBAL REUSE: Automatically injects the active user.json session for dashboard and all other core features
       const context = await browser.newContext();
       await use(context);
       await context.close();
@@ -27,6 +29,11 @@ export const test = base.extend<MyFixtures>({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
+  },
+
+  dashboardPage: async ({ page }, use) => {
+    const dashboardPage = new DashboardPage(page);
+    await use(dashboardPage);
   },
 });
 

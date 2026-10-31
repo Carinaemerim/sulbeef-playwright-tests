@@ -1,14 +1,10 @@
 import { createBdd } from 'playwright-bdd';
 import { expect } from '@playwright/test';
 import { test } from '../../support/fixtures/baseTest.js'; 
-import { LoginPage } from '../../support/pages/LoginPage.js'; 
-
-//test.use({ storageState: { cookies: [], origins: [] } });
 
 const { Given, When, Then } = createBdd(test);
 
 Given('I am on the login page', async ({ loginPage }) => {
-  // Reaproveita o método do seu Page Object
   await loginPage.goto();
 });
 

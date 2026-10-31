@@ -40,4 +40,14 @@ export class LoginPage {
     async clickSubmitButton() {
         await this.loginButton.click();
     }
+
+    async performSecureLogin() {
+        await this.goto();
+        const username = process.env.SULBEEF_USER || '';
+        const password = process.env.SULBEEF_PASS || '';
+        
+        await this.usernameInput.fill(username);
+        await this.passwordInput.fill(password);
+        await this.clickSubmitButton();
+    }
 }

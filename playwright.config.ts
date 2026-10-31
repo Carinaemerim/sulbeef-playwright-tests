@@ -10,7 +10,7 @@ const bddTestDir = defineBddConfig({
 });
 
 export default defineConfig({
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
@@ -18,6 +18,7 @@ export default defineConfig({
   
   use: {
     trace: 'on-first-retry',
+    storageState: 'playwright/.auth/user.json',
   },
 
   projects: [
