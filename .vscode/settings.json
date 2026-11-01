@@ -11,8 +11,6 @@
   "playwright-bdd-lens.command": "npx playwright test",
 
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
-  }
+  "editor.formatOnSave": false,
+  "prettier.enable": false,
 }

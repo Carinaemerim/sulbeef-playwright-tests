@@ -19,7 +19,7 @@ export default tseslint.config(
     rules: {
       'playwright/no-skipped-test': 'off', // Allows test skip if necessary
       'playwright/no-standalone-expect': 'off',
-      'prettier/prettier': 'error',
+      'prettier/prettier': 'off',
     },
   },
   eslintConfigPrettier, // Disable eslint rules that conflict with prettier

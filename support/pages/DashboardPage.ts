@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class DashboardPage {
   readonly page: Page;
@@ -15,20 +15,20 @@ export class DashboardPage {
   readonly cardBaixarComissao: Locator;
   readonly cardAcessarWebmail: Locator;
   readonly lateralMenuContainer: Locator;
+  readonly hamburgerMenuIcon: Locator;
+  readonly backMenuArrow: Locator;
+  readonly lateralMenuContainerDesktop: Locator;
+  readonly headerCompanyLogo: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.topBarTitle = page.getByTestId('top-bar-title');
-    this.criarNovoPedidoButton = page.getByRole('link', {
-      name: /criar novo pedido/i,
-    });
+    this.criarNovoPedidoButton = page.getByRole('link', {name: /criar novo pedido/i,});
     this.lateralMenuPedidos = page.getByTestId('menu-list-orders');
     this.lateralMenuNotasFiscais = page.getByTestId('menu-list-receipts');
     this.lateralMenuPlantas = page.getByTestId('menu-list-plants');
     this.lateralMenuProdutos = page.getByTestId('menu-list-products');
-    this.lateralMenuClientesFornecedores = page.getByTestId(
-      'menu-list-companies',
-    );
+    this.lateralMenuClientesFornecedores = page.getByTestId('menu-list-companies');
     this.lateralMenuRelatorios = page.getByTestId('menu-list-reports');
     this.lateralMenuUsuarios = page.getByTestId('menu-list-users');
     this.cardPedidos = page
@@ -41,9 +41,22 @@ export class DashboardPage {
       .locator('div.MuiPaper-root')
       .filter({ has: page.getByRole('heading', { name: 'Acessar Webmail' }) });
     this.lateralMenuContainer = page.getByRole('dialog');
+    this.hamburgerMenuIcon = this.page.locator('header button.MuiIconButton-edgeStart, .MuiAppBar-root button.MuiIconButton-edgeStart');
+    this.backMenuArrow = page.locator('header button.MuiIconButton-edgeStart, .MuiAppBar-root button.MuiIconButton-edgeStart');
+    this.lateralMenuContainerDesktop = page.locator('#side-bar');
+    this.headerCompanyLogo = page.getByRole('img', { name: 'Sulbeef' });
   }
 
   async goto() {
     await this.page.goto('https://pedidos.sulbeef.hc.dev.br/');
+  }
+
+  async clickOnHideMenuButton() {
+    await this.backMenuArrow.click();
+  }
+
+  async clickOnShowMenuButton() {
+    await this.hamburgerMenuIcon.focus();
+    await this.page.keyboard.press('Enter');
   }
 }

@@ -4,9 +4,7 @@ import { test } from '../../support/fixtures/baseTest.js';
 
 const { Given, When, Then } = createBdd(test);
 
-Given(
-  'I am on the dashboard page',
-  async ({ loginPage, dashboardPage, page }) => {
+Given('I am on the dashboard page', async ({ loginPage, dashboardPage, page }) => {
     await loginPage.performSecureLogin();
     await page.getByText('Carregando...').waitFor({ state: 'hidden' });
     await expect(dashboardPage.topBarTitle).toBeVisible();
@@ -54,7 +52,7 @@ Then('I should see the lateral menu Relatorios', async ({ dashboardPage }) => {
 });
 
 Then('I should see the lateral menu Usuarios', async ({ dashboardPage }) => {
-  await expect(dashboardPage.lateralMenuPedidos).toBeVisible();
+  await expect(dashboardPage.lateralMenuUsuarios).toBeVisible();
 });
 
 Then('I should see the Pedidos card', async ({ dashboardPage }) => {
@@ -69,7 +67,22 @@ Then('I should see the Acessar Webmail card', async ({ dashboardPage }) => {
   await expect(dashboardPage.cardAcessarWebmail).toBeVisible();
 });
 
+Then('I should see the lateral menu minimized', async ({ dashboardPage }) => {
+  await expect(dashboardPage.headerCompanyLogo).toBeHidden();
+});
+
+Then('I should see the lateral menu visible', async ({ dashboardPage }) => {
+  await expect(dashboardPage.lateralMenuContainerDesktop).toBeVisible();
+});
+
+When('I click on the Hide lateral menu button', async ({ dashboardPage }) => {
+    await dashboardPage.clickOnHideMenuButton();
+  });
+
+Then('I click on the Show lateral menu button', async ({ dashboardPage }) => {
+    await dashboardPage.clickOnShowMenuButton();
+  });
+
 Then('I should see Hamburger Menu icon with its itens hidden', async ({ dashboardPage }) => {
-    await expect(dashboardPage.lateralMenuContainer).toBeHidden();
-  },
-);
+  await expect(dashboardPage.lateralMenuContainer).toBeHidden();
+});

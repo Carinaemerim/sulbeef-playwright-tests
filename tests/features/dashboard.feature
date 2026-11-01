@@ -25,12 +25,21 @@ Feature: dashboard
       And I should see the Baixar Comissao card
       And I should see the Acessar Webmail card
 
-    # Scenario: Verify funcionality of Hide lateral menu button
-    #     Given I am on the dashboard page
-    #     When I click on the Hide lateral menu button
-    #     Then I should see the lateral menu hidden
-    #     When I click on the Show lateral menu button
-    #     Then I should see the lateral menu visible
+    @desktop
+    Scenario: Verify funcionality of Hide lateral menu button
+      Given I am on the dashboard page
+      When I click on the Hide lateral menu button
+      Then I should see the lateral menu minimized
+      And I click on the Show lateral menu button
+      And I should see the lateral menu visible
+
+    #@mobile
+    #Scenario: Verify funcionality of Hide lateral menu button
+      #Given I am on the dashboard page
+      #When I click on the Hide lateral menu button
+      #Then I should see the lateral menu hidden
+      #And I click on the Show lateral menu button
+      #And I should see the lateral menu visible
 
   #Scenario: Verify funcionality of Criar Novo Pedido button
     #Given I am on the dashboard page
