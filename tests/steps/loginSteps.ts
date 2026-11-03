@@ -34,8 +34,9 @@ When('I fill in the login form with a valid username but an invalid password', a
   },
 );
 
-Then('I should be redirected to the dashboard page', async ({ page }) => {
+Then('I should be redirected to the dashboard page', async ({ page, dashboardPage }) => {
   await page.getByText('Carregando...').waitFor({ state: 'hidden' });
+  await expect(dashboardPage.topBarTitle).toBeVisible();
   await expect(page).toHaveTitle('Portal de Pedido :: Sulbeef Representações');
 });
 
