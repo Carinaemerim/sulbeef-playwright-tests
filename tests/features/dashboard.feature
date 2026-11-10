@@ -17,21 +17,21 @@ Feature: dashboard
     And I should see the Acessar Webmail card
 
   @mobile
-    Scenario: Verify dashboard page default elements on mobile
-      Given I am on the dashboard page
-      Then I should see the dashboard header
-      And I should see Hamburger Menu icon with its itens hidden
-      And I should see the Pedidos card
-      And I should see the Baixar Comissao card
-      And I should see the Acessar Webmail card
+  Scenario: Verify dashboard page default elements on mobile
+    Given I am on the dashboard page
+    Then I should see the dashboard header
+    And I should see Hamburger Menu icon with its itens hidden
+    And I should see the Pedidos card
+    And I should see the Baixar Comissao card
+    And I should see the Acessar Webmail card
 
-    @desktop
-    Scenario: Verify funcionality of Hide lateral menu button
-      Given I am on the dashboard page
-      When I click on the Hide lateral menu button
-      Then I should see the lateral menu minimized
-      And I click on the Show lateral menu button
-      And I should see the lateral menu visible
+  @desktop
+  Scenario: Verify funcionality of Hide lateral menu button
+    Given I am on the dashboard page
+    When I click on the Hide lateral menu button
+    Then I should see the lateral menu minimized
+    And I click on the Show lateral menu button
+    And I should see the lateral menu visible
 
     #@mobile
     #Scenario: Verify funcionality of Hide lateral menu button
