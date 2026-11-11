@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class DashboardPage {
   readonly page: Page;
@@ -19,6 +19,8 @@ export class DashboardPage {
   readonly backMenuArrow: Locator;
   readonly lateralMenuContainerDesktop: Locator;
   readonly headerCompanyLogo: Locator;
+  readonly backdropOverlay: Locator;
+
 
   constructor(page: Page) {
     this.page = page;
@@ -45,6 +47,7 @@ export class DashboardPage {
     this.backMenuArrow = page.locator('header button.MuiIconButton-edgeStart, .MuiAppBar-root button.MuiIconButton-edgeStart');
     this.lateralMenuContainerDesktop = page.locator('#side-bar');
     this.headerCompanyLogo = page.getByRole('img', { name: 'Sulbeef' });
+    this.backdropOverlay = page.locator('.MuiBackdrop-root').filter({ visible:true });
   }
 
   async goto() {
@@ -58,5 +61,14 @@ export class DashboardPage {
   async clickOnShowMenuButton() {
     await this.hamburgerMenuIcon.focus();
     await this.page.keyboard.press('Enter');
+  }
+
+  async clickOnBackdropOverlay() {
+    await expect(this.backdropOverlay).toBeVisible();
+    const viewport = this.page.viewportSize();
+    const x = viewport ? viewport.width - 20 : 500;
+    const y = 200;
+
+    await this.page.mouse.click(x, y);  
   }
 }

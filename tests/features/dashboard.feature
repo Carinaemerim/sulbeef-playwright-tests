@@ -33,13 +33,13 @@ Feature: dashboard
     And I click on the Show lateral menu button
     And I should see the lateral menu visible
 
-    #@mobile
-    #Scenario: Verify funcionality of Hide lateral menu button
-      #Given I am on the dashboard page
-      #When I click on the Hide lateral menu button
-      #Then I should see the lateral menu hidden
-      #And I click on the Show lateral menu button
-      #And I should see the lateral menu visible
+    @mobile
+    Scenario: Verify funcionality of Hide lateral menu button on mobile
+      Given I am on the dashboard page
+      When I click on the Show lateral menu button
+      Then I should see the lateral menu visible
+      And I click outside lateral menu
+      And I should see Hamburger Menu icon with its itens hidden
 
   #Scenario: Verify funcionality of Criar Novo Pedido button
     #Given I am on the dashboard page

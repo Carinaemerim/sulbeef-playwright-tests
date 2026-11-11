@@ -86,3 +86,8 @@ Then('I click on the Show lateral menu button', async ({ dashboardPage }) => {
 Then('I should see Hamburger Menu icon with its itens hidden', async ({ dashboardPage }) => {
   await expect(dashboardPage.lateralMenuContainer).toBeHidden();
 });
+
+Then('I click outside lateral menu', async ({ dashboardPage }) => {
+  await dashboardPage.clickOnBackdropOverlay();
+});
+

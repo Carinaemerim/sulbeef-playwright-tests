@@ -29,6 +29,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
       },
+      grepInvert: /@mobile/,
     },
 
     //FIREFOX RUNNER (Execute the .feature scenarios in Firefox)
@@ -39,6 +40,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Firefox'],
       },
+      grepInvert: /@mobile/,
     },
 
     //MOBILE IOS RUNNER (Execute the .feature scenarios in mobile iOS)
