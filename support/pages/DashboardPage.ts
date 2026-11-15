@@ -20,6 +20,8 @@ export class DashboardPage {
   readonly lateralMenuContainerDesktop: Locator;
   readonly headerCompanyLogo: Locator;
   readonly backdropOverlay: Locator;
+  readonly criarPedidoDashboardButton: Locator;
+  readonly pedidoFormTitle: Locator;
 
 
   constructor(page: Page) {
@@ -48,6 +50,8 @@ export class DashboardPage {
     this.lateralMenuContainerDesktop = page.locator('#side-bar');
     this.headerCompanyLogo = page.getByRole('img', { name: 'Sulbeef' });
     this.backdropOverlay = page.locator('.MuiBackdrop-root').filter({ visible:true });
+    this.criarPedidoDashboardButton = page.getByRole('link', { name: 'Criar novo pedido' });
+    this.pedidoFormTitle = page.getByText('Informações Gerais', { exact: true });
   }
 
   async goto() {
@@ -70,5 +74,32 @@ export class DashboardPage {
     const y = 200;
 
     await this.page.mouse.click(x, y);  
+  }
+
+  async clickOnCriarPedidoDashboardButton() {
+    await this.criarPedidoDashboardButton.click();
+  }
+
+  async clickonPedidosCard() {
+    await this.cardPedidos.click();
+  } 
+
+  async clickonBaixarComissaoCard() {
+    await this.cardBaixarComissao.click();
+  }
+
+  async clickonAcessarWebmailCard() {
+    await this.cardAcessarWebmail.click();
+  }
+
+  async getPageAfterCardClick(cardName: string) {
+    if (cardName === 'Acessar Webmail') {
+      const browserContext = this.page.context();
+        await browserContext.waitForEvent('page');
+      
+        const pages = browserContext.pages();
+      return pages[pages.length - 1]; // Retorna a nova aba do Outlook
+    }
+  return this.page; // Para os outros cards, retorna a própria aba atual
   }
 }

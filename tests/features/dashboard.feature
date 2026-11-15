@@ -33,16 +33,26 @@ Feature: dashboard
     And I click on the Show lateral menu button
     And I should see the lateral menu visible
 
-    @mobile
-    Scenario: Verify funcionality of Hide lateral menu button on mobile
-      Given I am on the dashboard page
-      When I click on the Show lateral menu button
-      Then I should see the lateral menu visible
-      And I click outside lateral menu
-      And I should see Hamburger Menu icon with its itens hidden
+  @mobile
+  Scenario: Verify funcionality of Hide lateral menu button on mobile
+    Given I am on the dashboard page
+    When I click on the Show lateral menu button
+    Then I should see the lateral menu visible
+    And I click outside lateral menu
+    And I should see Hamburger Menu icon with its itens hidden
 
-  #Scenario: Verify funcionality of Criar Novo Pedido button
-    #Given I am on the dashboard page
-    #When I click on the Criar Novo Pedido button
-    #Then I should be redirected to the Criar Novo Pedido page
+  Scenario: Verify funcionality of Criar Novo Pedido button
+    Given I am on the dashboard page
+    When I click on the Criar Novo Pedido button
+    Then I should be redirected to the Criar Novo Pedido page
 
+  Scenario Outline: Verify cards redirection funcionality
+    Given I am on the dashboard page
+    When I click on the "<cardName>" card
+    Then I should be redirected to the "<cardName>" page
+
+    Examples:
+      | cardName             |
+      | Pedidos              |
+      | Baixar Comissao      |
+      | Acessar Webmail      |

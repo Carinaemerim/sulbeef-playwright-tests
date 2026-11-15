@@ -91,3 +91,41 @@ Then('I click outside lateral menu', async ({ dashboardPage }) => {
   await dashboardPage.clickOnBackdropOverlay();
 });
 
+When('I click on the Criar Novo Pedido button', async ({ dashboardPage }) => {
+  await dashboardPage.clickOnCriarPedidoDashboardButton();
+});
+
+Then('I should be redirected to the Criar Novo Pedido page', async ({ dashboardPage }) => {
+  await expect(dashboardPage.pedidoFormTitle).toBeVisible();
+});
+
+When('I click on the {string} card', async ({ dashboardPage }, cardName) => {
+  switch(cardName) {
+    case 'Pedidos':
+      await dashboardPage.clickonPedidosCard();
+      break;
+    case 'Baixar Comissao':
+      await dashboardPage.clickonBaixarComissaoCard();
+      break;
+    case 'Acessar Webmail':
+      await dashboardPage.clickonAcessarWebmailCard();
+      break;
+  }
+});
+
+Then('I should be redirected to the {string} page', async ({ dashboardPage }, cardName) => {
+  const targetPage = await dashboardPage.getPageAfterCardClick(cardName);
+  
+  switch(cardName) {
+    case 'Pedidos':
+      await expect(targetPage).toHaveURL(/.*\/orders/);
+      break;
+    case 'Baixar Comissao':
+      await expect(targetPage).toHaveURL(/.*\/orders\?status=WaitingForShipment/);
+      break;
+    case 'Acessar Webmail': 
+      await expect(targetPage).toHaveURL(/.*outlook\.office\.com.*/);
+      await targetPage.close();
+      break;
+  }
+});
