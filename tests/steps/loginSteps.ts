@@ -78,3 +78,44 @@ Then('I should see an error message under the password field', async ({ loginPag
     await expect(loginPage.passwordErrorMessage).toBeVisible();
   },
 );
+
+When('I click on the Show Password checkbox', async ({ loginPage }) => {
+    await loginPage.clickOnShowPasswordCheckbox();
+  },
+);
+
+When('I see the password masked', async ({ loginPage }) => {
+    await expect(loginPage.passwordInput).toHaveAttribute('type', 'password');
+  },
+);
+
+Then('I should see the password in plain text', async ({ loginPage }) => {
+    await expect(loginPage.passwordInput).toHaveAttribute('type', 'text');
+  },
+);
+
+When('I click on the Forgot Password link', async ({ loginPage }) => {
+    await loginPage.clickOnForgotPasswordLink();
+  },
+);
+
+Then('I should be redirected to the Forgot Password page', async ({ page }) => {
+    await expect(page).toHaveURL(/auth.*\/forgotPassword/i);
+  },
+);
+
+When('I click on the Microsoft login button', async ({ loginPage }) => {
+    await loginPage.clickOnLoginWithMicrosoftButton();
+  },
+);
+
+Then('I should be redirected to the Microsoft login page', async ({ page }) => {
+    await expect(page).toHaveURL(/login.microsoftonline.com/);
+  },
+);
+
+When('I fill in the password field', async ({ loginPage }) => {
+    const passwordExample = 'PasswordExample123';;
+    await loginPage.fillPassword(passwordExample);
+  },
+);

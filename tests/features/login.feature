@@ -43,3 +43,20 @@ Feature: Login
     When I fill in a valid username but leave the password field empty
     And I click on the login button
     Then I should see an error message under the password field
+
+  Scenario: Verify redirection of microsoft login button
+    Given I am on the login page
+    When I click on the Microsoft login button
+    Then I should be redirected to the Microsoft login page
+
+  Scenario: Verify Show Password button functionality
+    Given I am on the login page
+    When I fill in the password field
+    And I see the password masked
+    And I click on the Show Password checkbox
+    Then I should see the password in plain text
+
+  Scenario: Verify Forgot Password link functionality
+    Given I am on the login page
+    When I click on the Forgot Password link
+    Then I should be redirected to the Forgot Password page

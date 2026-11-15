@@ -8,16 +8,21 @@ export class LoginPage {
   readonly errorMessage: Locator;
   readonly usernameErrorMessage: Locator;
   readonly passwordErrorMessage: Locator;
+  readonly loginWithMicrosoftButton: Locator;
+  readonly showPasswordCheckbox: Locator;
+  readonly forgotPasswordLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.usernameInput = page.getByPlaceholder('Enter username');
     this.passwordInput = page.getByPlaceholder('Enter password');
     this.loginButton = page.getByRole('button', { name: 'Sign in' });
-
     this.errorMessage = page.getByText(/Invalid input/i).first();
     this.usernameErrorMessage = page.getByText(/missing username/i);
     this.passwordErrorMessage = page.getByText(/missing password/i);
+    this.loginWithMicrosoftButton = page.getByRole('link', { name: 'Continue with Microsoft' });
+    this.showPasswordCheckbox = page.getByRole('checkbox', { name: 'Show password' });
+    this.forgotPasswordLink = page.getByRole('link', { name: 'Forgot your password?' });
   }
 
   async goto() {
@@ -49,5 +54,17 @@ export class LoginPage {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
     await this.clickSubmitButton();
+  }
+
+  async clickOnShowPasswordCheckbox() {
+    await this.showPasswordCheckbox.click();
+  }
+
+  async clickOnForgotPasswordLink() {
+    await this.forgotPasswordLink.click();
+  }
+
+  async clickOnLoginWithMicrosoftButton() {
+    await this.loginWithMicrosoftButton.click();
   }
 }
